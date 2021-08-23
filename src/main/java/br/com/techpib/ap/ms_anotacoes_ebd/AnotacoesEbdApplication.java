@@ -1,4 +1,4 @@
-package br.com.techpib.ap.anotacoes_ebd;
+package br.com.techpib.ap.ms_anotacoes_ebd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
