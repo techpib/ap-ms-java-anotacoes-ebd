@@ -1,5 +1,6 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.impl;
 
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.SpringDataUsuarioRepository;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.Usuario;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
