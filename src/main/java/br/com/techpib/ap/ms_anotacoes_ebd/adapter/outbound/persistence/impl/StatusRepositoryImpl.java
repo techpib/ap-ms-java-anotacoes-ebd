@@ -1,7 +1,7 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.impl;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.SpringDataStatusRepository;
-import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.Status;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Status;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

@@ -1,19 +1,21 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.core.entities;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities;
 
+import br.com.techpib.ap.ms_anotacoes_ebd.core.utils.EncoderMD5;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
+@Transactional
 @Entity(name = "usuario")
 @Data
 public class Usuario implements UserDetails {
@@ -42,7 +44,6 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @NotNull
-    @NotBlank
     @Column(name = "dataHoraUltimaAtualizacao")
     private Date dataHoraUltimaAtualizacao;
 
@@ -55,7 +56,9 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("USER"));
+        return authorities;
     }
 
     @Override
@@ -86,5 +89,9 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setSenha(String senha) throws NoSuchAlgorithmException {
+        this.senha = EncoderMD5.encodeToMD5(senha);
     }
 }

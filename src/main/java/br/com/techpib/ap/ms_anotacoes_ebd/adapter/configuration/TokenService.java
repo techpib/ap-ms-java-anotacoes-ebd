@@ -1,6 +1,6 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration;
 
-import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.Usuario;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

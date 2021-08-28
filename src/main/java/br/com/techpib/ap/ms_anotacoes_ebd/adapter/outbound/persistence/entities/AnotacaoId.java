@@ -1,4 +1,4 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.core.entities;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities;
 
 import lombok.Data;
 import org.hibernate.annotations.Type;

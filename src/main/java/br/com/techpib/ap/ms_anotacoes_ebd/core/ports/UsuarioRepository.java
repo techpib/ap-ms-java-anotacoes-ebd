@@ -1,6 +1,6 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.core.ports;
 
-import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.Usuario;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,8 +1,8 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.impl;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.SpringDataAnotacaoRepository;
-import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.Anotacao;
-import br.com.techpib.ap.ms_anotacoes_ebd.core.entities.AnotacaoId;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Anotacao;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.AnotacaoId;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.AnotacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

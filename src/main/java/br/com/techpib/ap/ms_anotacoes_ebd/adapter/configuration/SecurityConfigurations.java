@@ -45,6 +45,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/usuario").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()

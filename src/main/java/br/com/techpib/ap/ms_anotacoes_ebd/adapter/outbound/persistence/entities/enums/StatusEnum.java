@@ -1,4 +1,4 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.core.entities.enums;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.enums;
 
 public enum StatusEnum {
 
