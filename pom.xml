@@ -86,6 +86,14 @@
 			<version>2.3.9</version>
 		</dependency>
 
+		<!--Apache Commons-->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
