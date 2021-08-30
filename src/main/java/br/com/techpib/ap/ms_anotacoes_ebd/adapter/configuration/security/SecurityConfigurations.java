@@ -1,4 +1,4 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration.security;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +46,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/usuario").permitAll()
+                .antMatchers(HttpMethod.PUT, "/ap-anotacoes-ebd/usuario").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()

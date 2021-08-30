@@ -13,5 +13,6 @@ public interface UsuarioRepository {
     Page<Usuario> findAll(Pageable pageable);
     Optional<Usuario> findById(UUID idUsuario);
     Optional<Usuario> findByEmail(String email);
+    Optional<Usuario> findUsuarioByEmailAndSenha(String email, String senha);
 
 }

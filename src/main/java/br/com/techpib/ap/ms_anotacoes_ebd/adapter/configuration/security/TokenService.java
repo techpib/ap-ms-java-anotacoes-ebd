@@ -1,4 +1,4 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration;
+package br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration.security;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
 import io.jsonwebtoken.Claims;

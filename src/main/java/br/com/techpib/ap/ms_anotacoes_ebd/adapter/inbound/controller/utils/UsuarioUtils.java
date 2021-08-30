@@ -8,4 +8,8 @@ public class UsuarioUtils {
         return usuarioService.findUsuarioByEmail(email).isPresent();
     }
 
+    public static boolean usuarioESenhaValido(UsuarioService usuarioService, String email, String senha){
+        return usuarioService.findUsuarioByEmailAndSenha(email, senha).isPresent();
+    }
+
 }

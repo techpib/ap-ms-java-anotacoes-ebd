@@ -38,4 +38,9 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     public Optional<Usuario> findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
+
+    @Override
+    public Optional<Usuario> findUsuarioByEmailAndSenha(String email, String senha) {
+        return usuarioRepository.findUsuarioByEmailAndSenha(email, senha);
+    }
 }

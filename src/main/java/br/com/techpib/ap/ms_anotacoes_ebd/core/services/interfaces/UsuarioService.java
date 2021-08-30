@@ -15,4 +15,6 @@ public interface UsuarioService {
 
     Optional<Usuario> findUsuarioByIdUsuario(UUID idUsuario);
 
+    Optional<Usuario> findUsuarioByEmailAndSenha(String email, String senha);
+
 }

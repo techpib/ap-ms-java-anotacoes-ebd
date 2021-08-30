@@ -1,6 +1,6 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller;
 
-import br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration.TokenService;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration.security.TokenService;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.data.dto.TokenDto;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.data.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
