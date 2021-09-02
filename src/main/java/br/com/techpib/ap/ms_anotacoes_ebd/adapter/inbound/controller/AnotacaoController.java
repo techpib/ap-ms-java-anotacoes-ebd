@@ -33,7 +33,7 @@ import java.util.UUID;
 public class AnotacaoController {
 
     private static final Logger log = LogManager.getLogger(AnotacaoController.class);
-    
+
     @Autowired
     private UsuarioService usuarioService;
 
@@ -48,9 +48,15 @@ public class AnotacaoController {
 
     @GetMapping("/{idUsuario}")
     @Cacheable(value = "listaAnotacoes")
-    public Page<AnotacaoDTO> findAll(@PathVariable UUID idUsuario, @PageableDefault(sort = "sequencialAnotacao", direction = Sort.Direction.ASC, page = 0, size = 10) Pageable paginacao){
-        //return usuarioMapper.converteParaDTO(usuarioService.findAll(paginacao));
-        return null;
+    public ResponseEntity<Page<AnotacaoDTO>> findAll(@PathVariable UUID idUsuario, @PageableDefault(sort = "anotacaoId", direction = Sort.Direction.ASC, page = 0, size = 10) Pageable paginacao){
+        log.info("[GET] - findAll, idUsuario: {}, data: {}", idUsuario, new Date());
+
+        if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario)){
+            log.error("[GET] - findAll, Usuario nao existe na base! idUsuario: {}, data: {}", idUsuario, new Date());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        return new ResponseEntity<>(anotacaoMapper.converteParaDTO(anotacaoService.findAnotacaoByIdUsuario(paginacao, idUsuario)), HttpStatus.OK);
     }
 
     @GetMapping("/{idUsuario}/{sequencialAnotacao}")

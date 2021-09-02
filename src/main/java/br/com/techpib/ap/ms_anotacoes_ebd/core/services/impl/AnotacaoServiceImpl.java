@@ -20,7 +20,6 @@ public class AnotacaoServiceImpl implements AnotacaoService {
 
     @Override
     public Anotacao save(Anotacao anotacao) {
-        //System.out.println("anotacao: "+ anotacao.toString());
         return anotacaoRepository.save(anotacao);
     }
 

@@ -9,7 +9,7 @@ import java.util.UUID;
 public class AnotacaoDTO {
 
     private UUID idUsuario;
-    private Integer sequencialAnotacao;
+    private Long sequencialAnotacao;
     private String titulo;
     private String texto;
     private Date dataHoraUltimaAtualizacao;
