@@ -93,8 +93,19 @@ public class AnotacaoController {
     @PutMapping("/{idUsuario}/{sequencialAnotacao}")
     @Transactional
     @CacheEvict(value = "listaAnotacoes", allEntries = true)
-    public ResponseEntity<AnotacaoDTO> update(@PathVariable UUID idUsuario, @PathVariable Integer sequencialAnotacao, @RequestBody @Valid AnotacaoForm anotacaoForm) {
-        return new ResponseEntity<>(new AnotacaoDTO(), HttpStatus.CREATED);
+    public ResponseEntity<AnotacaoDTO> update(@PathVariable UUID idUsuario, @PathVariable Long sequencialAnotacao, @RequestBody @Valid AnotacaoForm anotacaoForm) {
+        log.info("[GET] - update, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+
+        if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario) || !AnotacaoUtils.anotacaoExiste(anotacaoService, idUsuario, sequencialAnotacao)){
+            log.info("[GET] - update, Usuario e/ou anotacao nao existe na base!, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        Usuario usuario = usuarioService.findUsuarioByIdUsuario(anotacaoForm.getIdUsuario()).get();
+        Status status = statusService.findByIdStatus(StatusEnum.ALTERADA.idStatus).get();
+        anotacaoForm.setSequencialAnotacao(sequencialAnotacao);
+
+        return new ResponseEntity<>(anotacaoMapper.converteParaDTO(anotacaoService.update(anotacaoMapper.converteParaEntity(anotacaoForm, status, usuario))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{idUsuario}/{sequencialAnotacao}")

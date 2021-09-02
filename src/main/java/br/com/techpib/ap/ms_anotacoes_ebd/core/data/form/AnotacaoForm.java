@@ -20,6 +20,4 @@ public class AnotacaoForm {
     @Size(max = 5000)
     private String texto;
 
-    //private Integer idStatus;
-
 }
