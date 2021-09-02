@@ -1,6 +1,8 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import java.util.UUID;
 
 @Embeddable
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnotacaoId implements Serializable {
 
     @Type(type="uuid-char")
@@ -19,6 +23,6 @@ public class AnotacaoId implements Serializable {
 
     @NotNull
     @Column(name = "sequencialAnotacao")
-    private Integer sequencialAnotacao;
+    private Long sequencialAnotacao;
 
 }

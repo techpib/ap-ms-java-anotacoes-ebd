@@ -1,6 +1,8 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller;
 
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller.utils.AnotacaoUtils;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller.utils.UsuarioUtils;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.AnotacaoId;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Status;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.enums.StatusEnum;
@@ -60,8 +62,14 @@ public class AnotacaoController {
     }
 
     @GetMapping("/{idUsuario}/{sequencialAnotacao}")
-    public ResponseEntity<AnotacaoDTO> findByAnotacaoId(@PathVariable UUID idUsuario, @PathVariable Integer sequencialAnotacao){
-        return new ResponseEntity<>(new AnotacaoDTO(), HttpStatus.OK);
+    public ResponseEntity<AnotacaoDTO> findByAnotacaoId(@PathVariable UUID idUsuario, @PathVariable Long sequencialAnotacao){
+        log.info("[GET] - findByAnotacaoId, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+
+        if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario) || !AnotacaoUtils.anotacaoExiste(anotacaoService, idUsuario, sequencialAnotacao)){
+            log.info("[GET] - findByAnotacaoId, Usuario e/ou anotacao nao existe na base!, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return new ResponseEntity<>(anotacaoMapper.converteParaDTO(anotacaoService.findAnotacaoByAnotacaoId(new AnotacaoId(idUsuario, sequencialAnotacao)).get()), HttpStatus.OK);
     }
 
     @PostMapping
