@@ -26,13 +26,18 @@ public class AnotacaoRepositoryImpl implements AnotacaoRepository {
     }
 
     @Override
+    public void delete(Anotacao anotacao) {
+        anotacaoRepository.save(anotacao);
+    }
+
+    @Override
     public Optional<Anotacao> findAnotacaoByAnotacaoId(AnotacaoId anotacaoId) {
-        return anotacaoRepository.findAnotacaoByAnotacaoId(anotacaoId);
+        return anotacaoRepository.findAnotacaoByAnotacaoId(anotacaoId.getIdUsuario().toString(), anotacaoId.getSequencialAnotacao());
     }
 
     @Override
     public Page<Anotacao> findAnotacaoByIdUsuario(Pageable paginacao, UUID idUsuario) {
-        return anotacaoRepository.findAnotacaoByAnotacaoId_IdUsuario(paginacao, idUsuario);
+        return anotacaoRepository.findAnotacaoByAnotacaoId_IdUsuario(paginacao, idUsuario.toString());
     }
 
 }

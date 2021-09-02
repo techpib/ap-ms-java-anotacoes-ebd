@@ -101,11 +101,11 @@ public class Usuario implements UserDetails {
         this.senha = EncoderMD5.encodeToMD5(senha);
     }
 
-    private Long getUltimoSequencialAnotacao(){
+    private Integer getUltimoSequencialAnotacao(){
         return anotacoes.isEmpty() ? 0 : anotacoes.get(anotacoes.size()-1).getAnotacaoId().getSequencialAnotacao();
     }
 
-    public Long getProximoSequencialAnotacao(){
+    public Integer getProximoSequencialAnotacao(){
         return getUltimoSequencialAnotacao() +1;
     }
 

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class AnotacaoUtils {
 
-    public static boolean anotacaoExiste(AnotacaoService anotacaoService, UUID idUsuario, Long sequencialAnotacao){
+    public static boolean anotacaoExiste(AnotacaoService anotacaoService, UUID idUsuario, Integer sequencialAnotacao){
         return anotacaoService.findAnotacaoByAnotacaoId(new AnotacaoId(idUsuario, sequencialAnotacao)).isPresent();
     }
 

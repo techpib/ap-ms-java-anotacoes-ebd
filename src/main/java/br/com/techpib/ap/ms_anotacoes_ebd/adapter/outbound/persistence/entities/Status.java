@@ -16,7 +16,7 @@ public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStatus;
+    private Integer idStatus;
 
     @OneToMany(
             mappedBy = "status",

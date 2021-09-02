@@ -23,6 +23,6 @@ public class AnotacaoId implements Serializable {
 
     @NotNull
     @Column(name = "sequencialAnotacao")
-    private Long sequencialAnotacao;
+    private Integer sequencialAnotacao;
 
 }

@@ -27,7 +27,7 @@ public class AnotacaoMapper implements MapperDTO<Anotacao, AnotacaoDTO>, MapperA
             mapper.map(src -> usuario, Anotacao::setUsuario);
             mapper.map(src -> status, Anotacao::setStatus);
             mapper.<UUID>map(src -> anotacaoForm.getIdUsuario(), (anotacao, idUsuario) -> anotacao.getAnotacaoId().setIdUsuario(idUsuario));
-            mapper.<Long>map(src -> anotacaoForm.getSequencialAnotacao(), (anotacao, sequencialAnotacao) -> anotacao.getAnotacaoId().setSequencialAnotacao(sequencialAnotacao));
+            mapper.<Integer>map(src -> anotacaoForm.getSequencialAnotacao(), (anotacao, sequencialAnotacao) -> anotacao.getAnotacaoId().setSequencialAnotacao(sequencialAnotacao));
         }).map(anotacaoForm);
     }
 

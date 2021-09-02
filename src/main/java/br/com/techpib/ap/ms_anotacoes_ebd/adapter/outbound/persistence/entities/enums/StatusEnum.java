@@ -2,15 +2,15 @@ package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities
 
 public enum StatusEnum {
 
-    NOVA(1L, "NOVA"),
-    ALTERADA(2L, "ALTERADA"),
-    EXCLUIDA(3L, "EXCLUIDA"),
-    A_EXPURGAR(4L, "A EXPURGAR");
+    NOVA(1, "NOVA"),
+    ALTERADA(2, "ALTERADA"),
+    EXCLUIDA(3, "EXCLUIDA"),
+    A_EXPURGAR(4, "A EXPURGAR");
 
-    public Long idStatus;
+    public Integer idStatus;
     public String status;
 
-    StatusEnum(Long idStatus, String status) {
+    StatusEnum(Integer idStatus, String status) {
         this.idStatus = idStatus;
         this.status = status;
     }

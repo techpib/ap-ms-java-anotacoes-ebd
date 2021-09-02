@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface AnotacaoRepository {
 
     Anotacao save(Anotacao anotacao);
+    void delete(Anotacao anotacao);
     Optional<Anotacao> findAnotacaoByAnotacaoId(AnotacaoId anotacaoId);
     Page<Anotacao> findAnotacaoByIdUsuario(Pageable paginacao, UUID idUsuario);
 

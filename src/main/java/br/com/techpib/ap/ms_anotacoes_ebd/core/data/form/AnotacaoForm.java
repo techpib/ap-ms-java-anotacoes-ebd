@@ -12,7 +12,7 @@ public class AnotacaoForm {
     @NotNull
     private UUID idUsuario;
 
-    private Long sequencialAnotacao;
+    private Integer sequencialAnotacao;
 
     @Size(max = 100)
     private String titulo;

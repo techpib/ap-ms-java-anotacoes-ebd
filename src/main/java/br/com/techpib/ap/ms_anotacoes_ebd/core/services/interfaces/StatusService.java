@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface StatusService {
 
-    Optional<Status> findByIdStatus(Long idStatus);
+    Optional<Status> findByIdStatus(Integer idStatus);
 
 }

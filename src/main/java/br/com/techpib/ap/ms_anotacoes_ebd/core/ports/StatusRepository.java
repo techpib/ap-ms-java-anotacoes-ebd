@@ -10,6 +10,6 @@ public interface StatusRepository {
 
     Status save(Status status);
     Page<Status> findAll(Pageable pageable);
-    Optional<Status> findById(Long idStatus);
+    Optional<Status> findById(Integer idStatus);
 
 }

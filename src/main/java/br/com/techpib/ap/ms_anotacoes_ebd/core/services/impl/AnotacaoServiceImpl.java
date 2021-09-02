@@ -29,6 +29,11 @@ public class AnotacaoServiceImpl implements AnotacaoService {
     }
 
     @Override
+    public void delete(Anotacao anotacao) {
+        anotacaoRepository.delete(anotacao);
+    }
+
+    @Override
     public Optional<Anotacao> findAnotacaoByAnotacaoId(AnotacaoId anotacaoId) {
         return anotacaoRepository.findAnotacaoByAnotacaoId(anotacaoId);
     }

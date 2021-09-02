@@ -15,7 +15,7 @@ public class StatusServiceImpl implements StatusService {
     private StatusRepository statusRepository;
 
     @Override
-    public Optional<Status> findByIdStatus(Long idStatus) {
+    public Optional<Status> findByIdStatus(Integer idStatus) {
         return statusRepository.findById(idStatus);
     }
 }

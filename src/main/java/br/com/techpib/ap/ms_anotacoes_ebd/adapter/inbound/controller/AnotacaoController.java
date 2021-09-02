@@ -2,6 +2,7 @@ package br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller.utils.AnotacaoUtils;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.controller.utils.UsuarioUtils;
+import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Anotacao;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.AnotacaoId;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Status;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
@@ -50,7 +51,7 @@ public class AnotacaoController {
 
     @GetMapping("/{idUsuario}")
     @Cacheable(value = "listaAnotacoes")
-    public ResponseEntity<Page<AnotacaoDTO>> findAll(@PathVariable UUID idUsuario, @PageableDefault(sort = "anotacaoId", direction = Sort.Direction.ASC, page = 0, size = 10) Pageable paginacao){
+    public ResponseEntity<Page<AnotacaoDTO>> findAll(@PathVariable UUID idUsuario, @PageableDefault(sort = "sequencial_Anotacao", direction = Sort.Direction.ASC, page = 0, size = 10) Pageable paginacao){
         log.info("[GET] - findAll, idUsuario: {}, data: {}", idUsuario, new Date());
 
         if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario)){
@@ -62,7 +63,7 @@ public class AnotacaoController {
     }
 
     @GetMapping("/{idUsuario}/{sequencialAnotacao}")
-    public ResponseEntity<AnotacaoDTO> findByAnotacaoId(@PathVariable UUID idUsuario, @PathVariable Long sequencialAnotacao){
+    public ResponseEntity<AnotacaoDTO> findByAnotacaoId(@PathVariable UUID idUsuario, @PathVariable Integer sequencialAnotacao){
         log.info("[GET] - findByAnotacaoId, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
 
         if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario) || !AnotacaoUtils.anotacaoExiste(anotacaoService, idUsuario, sequencialAnotacao)){
@@ -93,7 +94,7 @@ public class AnotacaoController {
     @PutMapping("/{idUsuario}/{sequencialAnotacao}")
     @Transactional
     @CacheEvict(value = "listaAnotacoes", allEntries = true)
-    public ResponseEntity<AnotacaoDTO> update(@PathVariable UUID idUsuario, @PathVariable Long sequencialAnotacao, @RequestBody @Valid AnotacaoForm anotacaoForm) {
+    public ResponseEntity<AnotacaoDTO> update(@PathVariable UUID idUsuario, @PathVariable Integer sequencialAnotacao, @RequestBody @Valid AnotacaoForm anotacaoForm) {
         log.info("[GET] - update, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
 
         if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario) || !AnotacaoUtils.anotacaoExiste(anotacaoService, idUsuario, sequencialAnotacao)){
@@ -112,7 +113,20 @@ public class AnotacaoController {
     @Transactional
     @CacheEvict(value = "listaAnotacoes", allEntries = true)
     public ResponseEntity delete(@PathVariable UUID idUsuario, @PathVariable Integer sequencialAnotacao) {
-        return ResponseEntity.ok().build();
+        log.info("[GET] - delete, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+
+        if (!UsuarioUtils.usuarioExiste(usuarioService, idUsuario) || !AnotacaoUtils.anotacaoExiste(anotacaoService, idUsuario, sequencialAnotacao)){
+            log.info("[GET] - update, Usuario e/ou anotacao nao existe na base!, idUsuario: {}, sequencialAnotacao: {}, data: {}", idUsuario, sequencialAnotacao, new Date());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        Status status = statusService.findByIdStatus(StatusEnum.EXCLUIDA.idStatus).get();
+        Anotacao anotacao = anotacaoService.findAnotacaoByAnotacaoId(new AnotacaoId(idUsuario, sequencialAnotacao)).get();
+        anotacao.setStatus(status);
+
+        anotacaoService.delete(anotacao);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
