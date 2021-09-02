@@ -9,13 +9,14 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "status")
+@Entity
+@Table(name = "status")
 @Data
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer idStatus;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idStatus;
 
     @OneToMany(
             mappedBy = "status",
@@ -34,4 +35,14 @@ public class Status {
     @NotBlank
     @Column(name = "dataHoraUltimaAtualizacao")
     private Date dataHoraUltimaAtualizacao;
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "idStatus=" + idStatus +
+                ", anotacao=" + anotacao.toString() +
+                ", statusAnotacao='" + statusAnotacao + '\'' +
+                ", dataHoraUltimaAtualizacao=" + dataHoraUltimaAtualizacao +
+                '}';
+    }
 }

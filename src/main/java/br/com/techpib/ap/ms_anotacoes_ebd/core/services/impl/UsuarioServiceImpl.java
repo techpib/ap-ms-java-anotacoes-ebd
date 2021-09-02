@@ -1,6 +1,5 @@
 package br.com.techpib.ap.ms_anotacoes_ebd.core.services.impl;
 
-import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.SpringDataUsuarioRepository;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Usuario;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.UsuarioRepository;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.UsuarioService;

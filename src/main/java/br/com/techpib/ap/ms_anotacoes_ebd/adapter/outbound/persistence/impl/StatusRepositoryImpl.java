@@ -29,7 +29,7 @@ public class StatusRepositoryImpl implements StatusRepository {
     }
 
     @Override
-    public Optional<Status> findById(Integer idStatus) {
+    public Optional<Status> findById(Long idStatus) {
         return statusRepository.findById(idStatus);
     }
 }

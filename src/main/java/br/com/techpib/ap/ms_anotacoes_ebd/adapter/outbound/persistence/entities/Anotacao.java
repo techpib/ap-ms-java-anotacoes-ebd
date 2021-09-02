@@ -3,12 +3,12 @@ package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity(name = "anotacao")
+@Entity
+@Table(name = "anotacao")
 @Data
 public class Anotacao {
 
@@ -28,13 +28,24 @@ public class Anotacao {
     @Column(columnDefinition = "VARCHAR(5000)", name = "texto")
     private String texto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "idStatus")
-    @MapsId("idStatus")
     private Status status;
 
     @NotNull
-    @NotBlank
     @Column(name = "dataHoraUltimaAtualizacao")
     private Date dataHoraUltimaAtualizacao;
+
+    @Override
+    public String toString() {
+        return "Anotacao{" +
+                "anotacaoId=" + anotacaoId +
+                ", usuario=" + usuario.toString() +
+                ", titulo='" + titulo + '\'' +
+                ", texto='" + texto + '\'' +
+                ", status=" + status.toString() +
+                ", dataHoraUltimaAtualizacao=" + dataHoraUltimaAtualizacao +
+                '}';
+    }
 }

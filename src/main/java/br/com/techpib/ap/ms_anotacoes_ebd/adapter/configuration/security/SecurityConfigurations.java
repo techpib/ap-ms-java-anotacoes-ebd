@@ -47,6 +47,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/usuario").permitAll()
                 .antMatchers(HttpMethod.PUT, "/ap-anotacoes-ebd/usuario").permitAll()
+                .antMatchers(HttpMethod.POST, "/ap-anotacoes-ebd/anotacao").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()

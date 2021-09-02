@@ -14,9 +14,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Transactional
-@Entity(name = "usuario")
+@Entity
+@Table(name = "usuario")
 @Data
 public class Usuario implements UserDetails {
 
@@ -91,7 +93,31 @@ public class Usuario implements UserDetails {
         return true;
     }
 
+    public void setAnotacoes(List<Anotacao> anotacoes) {
+        this.anotacoes = anotacoes.stream().sorted(Comparator.comparing(anotacao -> anotacao.getAnotacaoId().getSequencialAnotacao())).collect(Collectors.toList());
+    }
+
     public void setSenha(String senha) throws NoSuchAlgorithmException {
         this.senha = EncoderMD5.encodeToMD5(senha);
+    }
+
+    private Integer getUltimoSequencialAnotacao(){
+        return anotacoes.isEmpty() ? 0 : anotacoes.get(anotacoes.size()-1).getAnotacaoId().getSequencialAnotacao();
+    }
+
+    public Integer getProximoSequencialAnotacao(){
+        return getUltimoSequencialAnotacao() +1;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", dataHoraUltimaAtualizacao=" + dataHoraUltimaAtualizacao +
+                ", anotacoes=" + anotacoes.toString() +
+                '}';
     }
 }

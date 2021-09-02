@@ -40,7 +40,7 @@ public class UsuarioController {
         log.info("[POST] - save, usuarioForm: {}, data: {}", usuarioForm, new Date());
 
         if(UsuarioUtils.usuarioExiste(usuarioService, usuarioForm.getEmail())){
-            log.error("[POST] - save, Usuario nao existe na base! usuarioForm: {}, data: {}", usuarioForm, new Date());
+            log.error("[POST] - save, Usuario ja existe na base! usuarioForm: {}, data: {}", usuarioForm, new Date());
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         return new ResponseEntity<>(usuarioMapper.converteParaDTO(usuarioService.save(usuarioMapper.converteParaEntity(usuarioForm))), HttpStatus.CREATED);

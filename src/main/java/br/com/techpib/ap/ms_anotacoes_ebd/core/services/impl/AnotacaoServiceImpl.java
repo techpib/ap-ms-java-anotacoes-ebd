@@ -1,27 +1,31 @@
-package br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.impl;
+package br.com.techpib.ap.ms_anotacoes_ebd.core.services.impl;
 
-import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.SpringDataAnotacaoRepository;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.Anotacao;
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.AnotacaoId;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.ports.AnotacaoRepository;
+import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.AnotacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
-@Primary
-public class AnotacaoRepositoryImpl implements AnotacaoRepository {
+@Service
+public class AnotacaoServiceImpl implements AnotacaoService {
 
     @Autowired
-    private SpringDataAnotacaoRepository anotacaoRepository;
+    private AnotacaoRepository anotacaoRepository;
 
     @Override
     public Anotacao save(Anotacao anotacao) {
+        //System.out.println("anotacao: "+ anotacao.toString());
+        return anotacaoRepository.save(anotacao);
+    }
+
+    @Override
+    public Anotacao update(Anotacao anotacao) {
         return anotacaoRepository.save(anotacao);
     }
 
@@ -32,7 +36,6 @@ public class AnotacaoRepositoryImpl implements AnotacaoRepository {
 
     @Override
     public Page<Anotacao> findAnotacaoByIdUsuario(Pageable paginacao, UUID idUsuario) {
-        return anotacaoRepository.findAnotacaoByAnotacaoId_IdUsuario(paginacao, idUsuario);
+        return anotacaoRepository.findAnotacaoByIdUsuario(paginacao, idUsuario);
     }
-
 }
