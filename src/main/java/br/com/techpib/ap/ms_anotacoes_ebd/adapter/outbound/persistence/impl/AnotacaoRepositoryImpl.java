@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,6 +39,26 @@ public class AnotacaoRepositoryImpl implements AnotacaoRepository {
     @Override
     public Page<Anotacao> findAnotacaoByIdUsuario(Pageable paginacao, UUID idUsuario) {
         return anotacaoRepository.findAnotacaoByAnotacaoId_IdUsuario(paginacao, idUsuario.toString());
+    }
+
+    @Override
+    public void updateAnotacaParaAExpurgar(Date dataBase) {
+        anotacaoRepository.updateAnotacaParaAExpurgar(dataBase);
+    }
+
+    @Override
+    public Integer qtdAnotacoesAtualizadas(Date dataBase, Integer codigoStatus) {
+        return anotacaoRepository.qtdAnotacoesAtualizadas(dataBase, codigoStatus);
+    }
+
+    @Override
+    public Integer qtdAnotacoesParaExcluir(Date dataBase, Integer codigoStatus) {
+        return anotacaoRepository.qtdAnotacoesParaExcluir(dataBase, codigoStatus);
+    }
+
+    @Override
+    public void deleteAnotacaAExcluir(Date dataBase) {
+        anotacaoRepository.deleteAnotacaAExcluir(dataBase);
     }
 
 }
