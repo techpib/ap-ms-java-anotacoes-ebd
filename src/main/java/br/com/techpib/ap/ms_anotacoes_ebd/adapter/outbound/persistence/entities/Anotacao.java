@@ -27,8 +27,7 @@ public class Anotacao {
     @Size(max = 5000)
     @Column(columnDefinition = "VARCHAR(5000)", name = "texto")
     private String texto;
-
-
+    
     @ManyToOne
     @JoinColumn(name = "idStatus")
     private Status status;
