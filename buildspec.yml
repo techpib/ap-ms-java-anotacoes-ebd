@@ -6,8 +6,8 @@ phases:
       java: corretto11
     commands:
       - echo installing maven...
-      - sudo yum update -y
-      - sudo yum install -y maven
+#      - sudo yum update -y
+#      - sudo yum install -y maven
   build:
     commands:
       - echo building the application
