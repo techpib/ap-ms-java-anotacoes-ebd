@@ -17,40 +17,40 @@ import java.util.UUID;
 @Repository
 public interface SpringDataAnotacaoRepository extends JpaRepository<Anotacao, AnotacaoId> {
 
-    @Query(value = "SELECT * FROM ANOTACAO " +
-            "WHERE ID_USUARIO = :idUsuario " +
-            "  AND SEQUENCIAL_ANOTACAO = :sequencialAnotacao " +
-            "  AND (ID_STATUS  = 1 " +
-            "  OR   ID_STATUS  = 2)", nativeQuery = true)
+    @Query(value = "SELECT * FROM anotacao " +
+            "WHERE id_usuario = :idUsuario " +
+            "  AND sequencial_anotacao = :sequencialAnotacao " +
+            "  AND (id_status  = 1 " +
+            "  OR   id_status  = 2)", nativeQuery = true)
     Optional<Anotacao> findAnotacaoByAnotacaoId(@Param("idUsuario") String idUsuario, @Param("sequencialAnotacao") Integer sequencialAnotacao);
 
-    @Query(value = "SELECT * FROM ANOTACAO " +
-            "WHERE ID_USUARIO =:idUsuario " +
-            "  AND (ID_STATUS  = 1 " +
-            "  OR   ID_STATUS  = 2)", nativeQuery = true)
+    @Query(value = "SELECT * FROM anotacao " +
+            "WHERE id_usuario =:idUsuario " +
+            "  AND (id_status  = 1 " +
+            "  OR   id_status  = 2)", nativeQuery = true)
     Page<Anotacao> findAnotacaoByAnotacaoId_IdUsuario(Pageable paginacao, @Param("idUsuario") String idUsuario);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE ANOTACAO " +
-            "SET ID_STATUS = 4, " +
-            "    DATA_HORA_ULTIMA_ATUALIZACAO =:dataBase " +
-            "WHERE ID_STATUS = 3", nativeQuery = true)
+    @Query(value = "UPDATE anotacao " +
+            "SET id_status = 4, " +
+            "    data_hora_ultima_atualizacao =:dataBase " +
+            "WHERE id_status = 3", nativeQuery = true)
     void updateAnotacaParaAExpurgar(@Param("dataBase") Date dataBase);
 
-    @Query(value = "SELECT COUNT(*) FROM ANOTACAO " +
-            "WHERE ID_STATUS =:codigoStatus " +
-            "  AND DATA_HORA_ULTIMA_ATUALIZACAO =:dataBase", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM anotacao " +
+            "WHERE id_status =:codigoStatus " +
+            "  AND data_hora_ultima_atualizacao =:dataBase", nativeQuery = true)
     Integer qtdAnotacoesAtualizadas(@Param("dataBase") Date dataBase, @Param("codigoStatus") Integer codigoStatus);
 
-    @Query(value = "SELECT COUNT(*) FROM ANOTACAO " +
-            "WHERE ID_STATUS =:codigoStatus " +
-            "  AND DATA_HORA_ULTIMA_ATUALIZACAO <=:dataBase", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM anotacao " +
+            "WHERE id_status =:codigoStatus " +
+            "  AND data_hora_ultima_atualizacao <=:dataBase", nativeQuery = true)
     Integer qtdAnotacoesParaExcluir(@Param("dataBase") Date dataBase, @Param("codigoStatus") Integer codigoStatus);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "DELETE FROM ANOTACAO " +
-            "WHERE ID_STATUS = 4 " +
-            "  AND DATA_HORA_ULTIMA_ATUALIZACAO <=:dataBase", nativeQuery = true)
+    @Query(value = "DELETE FROM anotacao " +
+            "WHERE id_status = 4 " +
+            "  AND data_hora_ultima_atualizacao <=:dataBase", nativeQuery = true)
     void deleteAnotacaAExcluir(@Param("dataBase") Date dataBase);
 
 }
