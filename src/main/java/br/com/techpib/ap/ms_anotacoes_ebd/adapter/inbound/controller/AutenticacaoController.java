@@ -4,8 +4,9 @@ import br.com.techpib.ap.ms_anotacoes_ebd.adapter.configuration.security.TokenSe
 import br.com.techpib.ap.ms_anotacoes_ebd.core.data.dto.TokenDto;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.data.form.LoginForm;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.UsuarioService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +26,7 @@ import java.util.UUID;
 @RequestMapping("/ap-anotacoes-ebd/auth")
 public class AutenticacaoController {
 
-    private static final Logger log = LogManager.getLogger(AutenticacaoController.class);
+    private static final Logger log = LoggerFactory.getLogger(AutenticacaoController.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
