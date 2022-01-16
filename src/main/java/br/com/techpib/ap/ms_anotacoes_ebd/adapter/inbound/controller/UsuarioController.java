@@ -8,8 +8,8 @@ import br.com.techpib.ap.ms_anotacoes_ebd.core.data.mapper.UsuarioMapper;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.UsuarioService;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.utils.EncoderMD5;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import java.util.Date;
 @RequestMapping(value = "/ap-anotacoes-ebd/usuario")
 public class UsuarioController {
 
-    private static final Logger log = LogManager.getLogger(UsuarioController.class);
+    private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
     @Autowired
     private UsuarioService usuarioService;

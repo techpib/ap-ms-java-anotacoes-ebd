@@ -13,8 +13,9 @@ import br.com.techpib.ap.ms_anotacoes_ebd.core.data.mapper.AnotacaoMapper;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.AnotacaoService;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.StatusService;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.UsuarioService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -35,7 +36,7 @@ import java.util.UUID;
 @RequestMapping(value = "/ap-anotacoes-ebd/anotacao")
 public class AnotacaoController {
 
-    private static final Logger log = LogManager.getLogger(AnotacaoController.class);
+    private static final Logger log = LoggerFactory.getLogger(AnotacaoController.class);
 
     @Autowired
     private UsuarioService usuarioService;

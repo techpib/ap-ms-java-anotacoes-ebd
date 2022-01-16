@@ -2,8 +2,9 @@ package br.com.techpib.ap.ms_anotacoes_ebd.adapter.inbound.schedule;
 
 import br.com.techpib.ap.ms_anotacoes_ebd.adapter.outbound.persistence.entities.enums.StatusEnum;
 import br.com.techpib.ap.ms_anotacoes_ebd.core.services.interfaces.AnotacaoService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,7 +18,7 @@ import java.util.Date;
 @EnableScheduling
 public class AnotacaoBatch {
 
-    private static final Logger log = LogManager.getLogger(AnotacaoBatch.class);
+    private static final Logger log = LoggerFactory.getLogger(AnotacaoBatch.class);
 
     private final String TIME_ZONE = "America/Sao_Paulo";
 

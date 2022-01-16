@@ -13,9 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>anotacoes_ebd</name>
 	<description>Microsserviço de Anotações da EBD</description>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -86,13 +88,16 @@
 			<version>2.3.9</version>
 		</dependency>
 
-		<!--Apache Commons-->
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>4.7</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+		</dependency>
 
 	</dependencies>
 
